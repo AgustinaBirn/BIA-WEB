@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/* =========================
+   BIA DESIGN TOKENS
+   Premium Urban Luxury
+========================= */
+
+:root {
+  /* Base */
+  --background: #0a0a0b;
+  --surface: #17181c;
+  --surface-2: #2b2d34;
+
+  /* Typography */
+  --foreground: #f5f3ef;
+  --muted: #a7aab3;
+
+  /* UI */
+  --border: rgba(245, 243, 239, 0.08);
+
+  /* Signature Accents */
+  --accent: #d946ef;
+  --accent-violet: #8b5cf6;
+  --accent-rose: #f472b6;
+
+  --accent-soft: rgba(217, 70, 239, 0.12);
+  --accent-violet-soft: rgba(139, 92, 246, 0.1);
+  --accent-rose-soft: rgba(244, 114, 182, 0.1);
+
+  /* Optional Luxury Detail */
+  --luxury-detail: #c8a96b;
+
+  --max-width: 1440px;
+}
+
+/* =========================
+   TAILWIND THEME MAP
+========================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  --color-border: var(--border);
+
+  --color-accent: var(--accent);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-rose: var(--accent-rose);
+
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-violet-soft: var(--accent-violet-soft);
+  --color-accent-rose-soft: var(--accent-rose-soft);
+
+  --color-luxury-detail: var(--luxury-detail);
+
+  --font-display: var(--font-satoshi);
+  --font-sans: var(--font-general-sans);
+  --font-body: var(--font-general-sans);
+  --font-ui: var(--font-inter);
+}
+
+/* =========================
+   BASE RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--background);
+
+  color: var(--foreground);
+
+  font-family: var(--font-general-sans);
+
+  overflow-x: hidden;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* =========================
+   TYPOGRAPHY FOUNDATION
+========================= */
+
+h1 {
+  font-family: var(--font-satoshi);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+h2 {
+  font-family: var(--font-general-sans);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+h3,
+h4 {
+  font-family: var(--font-general-sans);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+button,
+a {
+  font-family: var(--font-general-sans);
+}
+
+/* =========================
+   PREMIUM SELECTION
+========================= */
+
+::selection {
+  background: rgba(217, 70, 239, 0.35);
+
+  color: var(--foreground);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b2d34;
+
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3d46;
+}
+
+/* =========================
+   BIA CUSTOM CURSOR
+========================= */
+
+@media (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+input,
+textarea {
+  color-scheme: dark;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: rgba(245, 243, 239, 0.92) !important;
+  caret-color: rgba(245, 243, 239, 0.92) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(12, 10, 15, 0.94) inset !important;
+  box-shadow: 0 0 0 1000px rgba(12, 10, 15, 0.94) inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.bia-select-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 70, 239, 0.34) rgba(255, 255, 255, 0.04);
+}
+
+.bia-select-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bia-select-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.bia-select-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 114, 182, 0.42),
+    rgba(217, 70, 239, 0.34),
+    rgba(139, 92, 246, 0.28)
+  );
+  border-radius: 999px;
+}
+
+html[data-route-changing="true"] .bia-route-content {
+  opacity: 0;
+}
+
+.bia-hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

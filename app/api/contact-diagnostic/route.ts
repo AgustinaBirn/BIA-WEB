@@ -9,12 +9,20 @@ import {
 } from "@/lib/diagnostic-evaluator";
 import { saveDiagnosticSubmission } from "@/lib/save-diagnostic-submission";
 
+function createResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    return null;
+  }
+
+  return new Resend(apiKey);
+}
+
 type DiagnosticRequestPayload = DiagnosticAnswers & {
   honeypot?: string;
   startedAt?: number;
 };
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const requiredFields: (keyof DiagnosticAnswers)[] = [
   "name",
@@ -168,6 +176,20 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "Falta configurar RESEND_API_KEY.",
+        },
+        {
+          status: 500,
+        },
+      );
+    }
+
+    const resend = createResendClient();
+
+    if (!resend) {
+      return Response.json(
+        {
+          ok: false,
+          error: "Resend API key is not configured.",
         },
         {
           status: 500,

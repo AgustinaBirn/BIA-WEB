@@ -172,17 +172,6 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json(
-        {
-          error: "Falta configurar RESEND_API_KEY.",
-        },
-        {
-          status: 500,
-        },
-      );
-    }
-
     const resend = createResendClient();
 
     if (!resend) {
@@ -228,7 +217,11 @@ export async function POST(request: Request) {
           : `Nuevo análisis gratuito — ${answers.name}`,
         html: buildOwnerEmailHtml(answers, result),
       });
-
+      if (!resend || !from || !ownerEmail) {
+        throw new Error(
+          "Email service is not fully configured. Check RESEND_API_KEY, RESEND_FROM_EMAIL and BIA_OWNER_EMAIL.",
+        );
+      }
       ownerEmailSent = true;
 
       if (isTestMode) {

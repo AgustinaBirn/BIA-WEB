@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Transition, type Variants } from "framer-motion";
 import { useState } from "react";
 
 import CtaLink from "@/components/ui/cta-link";
@@ -17,6 +17,8 @@ type MainServicesCarouselProps = {
 };
 
 type RelativePosition = -2 | -1 | 0 | 1 | 2;
+
+const carouselEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 function getLoopIndex(index: number, length: number) {
     return ((index % length) + length) % length;
@@ -43,9 +45,9 @@ function getCardState(
     position: RelativePosition,
     introComplete = true
 ) {
-    const baseTransition = {
+    const baseTransition: Transition = {
         duration: 0.72,
-        ease: [0.16, 1, 0.3, 1],
+        ease: carouselEase,
     };
 
     if (!introComplete) {
@@ -144,9 +146,9 @@ function getCardState(
 }
 
 function getMobileCardState(position: RelativePosition) {
-    const transition = {
-        duration: 0.58,
-        ease: [0.16, 1, 0.3, 1],
+    const transition: Transition = {
+        duration: 0.72,
+        ease: carouselEase,
     };
 
     if (position === 0) {
@@ -188,7 +190,7 @@ function getMobileCardState(position: RelativePosition) {
     };
 }
 
-const mobileCarouselIntro = {
+const mobileCarouselIntro: Variants = {
     hidden: {
         opacity: 0,
         y: 28,
@@ -201,7 +203,7 @@ const mobileCarouselIntro = {
         scale: 1,
         transition: {
             duration: 0.95,
-            ease: [0.16, 1, 0.3, 1],
+            ease: carouselEase,
         },
     },
 };

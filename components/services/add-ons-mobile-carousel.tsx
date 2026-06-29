@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 
 import AddOnCard from "@/components/services/add-on-card";
@@ -27,7 +27,9 @@ function chunkItems(items: readonly AddOn[], size: number) {
     return chunks;
 }
 
-const slideVariants = {
+const slideEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const slideVariants: Variants = {
     enter: (direction: number) => ({
         opacity: 0,
         x: direction > 0 ? 44 : -44,
@@ -42,7 +44,7 @@ const slideVariants = {
         filter: "none",
         transition: {
             duration: 0.58,
-            ease: [0.16, 1, 0.3, 1],
+            ease: slideEase,
         },
     },
 };
